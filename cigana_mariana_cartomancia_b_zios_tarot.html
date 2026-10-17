@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cigana Mariana | +37 Anos de Tradição em Cartomancia, Búzios & Tarot</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cinzel, Playfair Display & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mystic: {
+                            950: '#080112',
+                            900: '#0d041a',
+                            850: '#140626',
+                            800: '#1c0836',
+                            700: '#280f4f',
+                            600: '#3c1873',
+                        },
+                        gold: {
+                            light: '#fcf2bc',
+                            soft: '#f7dc87',
+                            DEFAULT: '#d4af37',
+                            dark: '#aa8228',
+                            glow: '#ffd700'
+                        },
+                        crimson: {
+                            light: '#b82548',
+                            DEFAULT: '#881337',
+                            dark: '#4c0519'
+                        }
+                    },
+                    fontFamily: {
+                        cinzel: ['"Cinzel"', 'serif'],
+                        playfair: ['"Playfair Display"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'gold-glow': '0 0 25px rgba(212, 175, 55, 0.35)',
+                        'gold-intense': '0 0 40px rgba(212, 175, 55, 0.65)',
+                        'purple-glow': '0 0 35px rgba(88, 28, 135, 0.45)',
+                        'card-flip': '0 15px 35px rgba(0, 0, 0, 0.85)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080112;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #280f4f;
+            border-radius: 4px;
+            border: 1px solid #d4af37;
+        }
+
+        /* Ambient Stars Canvas Background */
+        #stars-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.9;
+        }
+
+        /* 3D Card Flip Perspective */
+        .perspective-1000 {
+            perspective: 1200px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        /* Shimmering Gold Gradient Border */
+        .gold-border-gradient {
+            border: 1px solid transparent;
+            background: linear-gradient(135deg, #140626, #0d041a) padding-box,
+                        linear-gradient(135deg, rgba(212, 175, 55, 0.8), rgba(136, 19, 55, 0.5), rgba(212, 175, 55, 0.2)) border-box;
+        }
+        .gold-border-card {
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.4s ease;
+        }
+        .gold-border-card:hover {
+            border-color: rgba(212, 175, 55, 0.85);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.25);
+            transform: translateY(-5px);
+        }
+
+        /* Golden shimmer text animation */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .shimmer-text {
+            background: linear-gradient(90deg, #fff 0%, #f7dc87 25%, #d4af37 50%, #f7dc87 75%, #fff 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shimmer 7s linear infinite;
+        }
+
+        /* Búzios felt dish */
+        .opon-felt {
+            background: radial-gradient(circle, #2b0e50 0%, #17072d 60%, #080112 100%);
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.95), 0 0 35px rgba(212, 175, 55, 0.25);
+        }
+
+        /* Shell Animation */
+        @keyframes tossShell {
+            0% { transform: translate(0, 0) scale(0.6) rotate(0deg); opacity: 0; }
+            35% { transform: translate(var(--tw-tx, 20px), var(--tw-ty, -50px)) scale(1.3) rotate(180deg); opacity: 1; }
+            100% { transform: translate(var(--tw-fx, 0px), var(--tw-fy, 0px)) scale(1) rotate(var(--tw-rot, 45deg)); opacity: 1; }
+        }
+        .shell-tossed {
+            animation: tossShell 0.85s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+        }
+    </style>
+</head>
+<body class="bg-mystic-950 text-gray-200 font-sans selection:bg-gold selection:text-mystic-950 relative min-h-screen">
+
+    <!-- Starry Mystic Background Canvas -->
+    <canvas id="stars-canvas"></canvas>
+
+    <!-- Main Content Container -->
+    <div class="relative z-10 flex flex-col min-h-screen">
+
+        <!-- ================= TOP NOTICE BAR ================= -->
+        <div class="bg-gradient-to-r from-crimson-dark via-mystic-800 to-crimson-dark border-b border-gold/25 py-2 text-xs md:text-sm text-center text-gold-soft px-4 flex items-center justify-center gap-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+            <span>✦ Mais de <strong>37 anos de tradição oracular</strong> com Cigana Mariana • WhatsApp Oficial: <strong>(31) 98895-6933</strong></span>
+            <span class="hidden md:inline text-gold">✦</span>
+        </div>
+
+        <!-- ================= HEADER / NAVBAR ================= -->
+        <header class="sticky top-0 z-50 backdrop-blur-md bg-mystic-950/85 border-b border-gold/20 transition-all duration-300" id="main-header">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3.5 group">
+                    <div class="w-12 h-12 rounded-full border border-gold/70 flex items-center justify-center bg-gradient-to-br from-crimson-dark via-mystic-800 to-mystic-950 shadow-gold-glow group-hover:scale-105 transition-transform duration-300">
+                        <i class="fa-solid fa-gem text-gold text-xl group-hover:rotate-12 transition-transform"></i>
+                    </div>
+                    <div>
+                        <span class="block font-cinzel font-bold text-lg sm:text-2xl tracking-wider text-white">CIGANA <span class="text-gold">MARIANA</span></span>
+                        <span class="block text-[10px] tracking-widest text-gold-soft/80 uppercase font-sans">+37 Anos de Tradição Oracular</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                    <a href="#inicio" class="text-gray-300 hover:text-gold transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-gold">Início</a>
+                    <a href="#sobre" class="text-gray-300 hover:text-gold transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-gold">Sobre Mariana</a>
+                    <a href="#oraculos" class="text-gray-300 hover:text-gold transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-gold">Oráculos</a>
+                    <a href="#ferramentas" class="text-gold-soft hover:text-gold font-semibold transition-colors duration-200 py-1 border-b-2 border-gold/40 hover:border-gold flex items-center gap-1.5">
+                        <i class="fa-solid fa-wand-magic-sparkles text-xs text-gold"></i> Jogo Interativo
+                    </a>
+                    <a href="#agendamento" class="text-gray-300 hover:text-gold transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-gold">Agendamento</a>
+                    <a href="#depoimentos" class="text-gray-300 hover:text-gold transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-gold">Depoimentos</a>
+                    <a href="#faq" class="text-gray-300 hover:text-gold transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-gold">FAQ</a>
+                </nav>
+
+                <!-- WhatsApp CTA & Mobile Menu Toggle -->
+                <div class="flex items-center gap-4">
+                    <a href="https://wa.me/5531988956933?text=Ol%C3%A1%20Cigana%20Mariana%2C%20gostaria%20de%20saber%20mais%20sobre%20as%20consultas." target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-gradient-to-r from-gold via-yellow-500 to-gold-dark text-mystic-950 font-bold text-xs tracking-wider uppercase shadow-gold-glow hover:scale-105 active:scale-95 transition-all duration-300">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>(31) 98895-6933</span>
+                    </a>
+                    <button id="mobile-toggle" aria-label="Abrir Menu" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-gold/30 text-gold hover:bg-gold/10 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Drawer -->
+            <div id="mobile-nav" class="hidden lg:hidden bg-mystic-950/98 border-b border-gold/25 px-6 py-6 transition-all duration-300">
+                <nav class="flex flex-col gap-4 text-base font-cinzel">
+                    <a href="#inicio" class="mobile-link text-gray-200 hover:text-gold py-1">✦ Início</a>
+                    <a href="#sobre" class="mobile-link text-gray-200 hover:text-gold py-1">✦ Sobre Cigana Mariana</a>
+                    <a href="#oraculos" class="mobile-link text-gray-200 hover:text-gold py-1">✦ Nossos Oráculos</a>
+                    <a href="#ferramentas" class="mobile-link text-gold font-bold hover:text-gold-soft py-1">✦ Jogo Interativo (Cartas & Búzios)</a>
+                    <a href="#agendamento" class="mobile-link text-gray-200 hover:text-gold py-1">✦ Agendamento Inteligente</a>
+                    <a href="#depoimentos" class="mobile-link text-gray-200 hover:text-gold py-1">✦ Depoimentos</a>
+                    <a href="#faq" class="mobile-link text-gray-200 hover:text-gold py-1">✦ Perguntas Frequentes (FAQ)</a>
+                    <div class="pt-4 border-t border-gold/20">
+                        <a href="https://wa.me/5531988956933?text=Ol%C3%A1%20Cigana%20Mariana%2C%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gold text-mystic-950 font-bold uppercase tracking-wider text-xs shadow-gold-glow">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            WhatsApp: (31) 98895-6933
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- ================= HERO SECTION ================= -->
+        <section id="inicio" class="relative pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+            <!-- Mystical Glow Spots -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-purple-900/25 rounded-full blur-[140px] pointer-events-none"></div>
+            <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] bg-crimson/20 rounded-full blur-[100px] pointer-events-none"></div>
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] bg-gold/15 rounded-full blur-[80px] pointer-events-none"></div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+                
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-mystic-850 border border-gold/40 text-gold text-xs sm:text-sm font-semibold uppercase tracking-widest mb-6 shadow-sm">
+                    <i class="fa-solid fa-star-of-david text-[11px] text-gold"></i>
+                    Mais de 37 Anos de Tradição Oracular & Acolhimento Sagrado
+                </div>
+
+                <!-- Main Title -->
+                <h1 class="font-cinzel text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-5xl mx-auto leading-tight md:leading-[1.15]">
+                    Desvende o Destino com <span class="shimmer-text">+37 Anos de Experiência</span> da <span class="shimmer-text">Cigana Mariana</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="mt-6 text-gray-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-light">
+                    Abra seus caminhos para o <span class="text-gold font-medium">Amor</span>, <span class="text-gold font-medium">Finanças</span>, <span class="text-gold font-medium">Carreira</span> e <span class="text-gold font-medium">Espiritualidade</span>. Atendimento fundamentado em <strong class="text-white">mais de 37 anos de tradição oracular</strong> com Baralho Cigano, Tarot e Jogo de Búzios.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                    <a href="https://wa.me/5531988956933?text=Ol%C3%A1%20Cigana%20Mariana%2C%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-gold via-yellow-500 to-gold-dark text-mystic-950 font-bold text-sm tracking-wider uppercase shadow-gold-glow hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-3">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Agendar no WhatsApp (31) 98895-6933</span>
+                    </a>
+                    <a href="#ferramentas" class="w-full sm:w-auto px-8 py-4 rounded-full bg-mystic-900/90 border border-gold/40 text-gold-soft hover:text-white hover:border-gold hover:bg-gold/10 font-semibold text-sm tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-wand-magic-sparkles text-gold"></i>
+                        <span>Testar Jogo Interativo</span>
+                    </a>
+                </div>
+
+                <!-- Trust Highlights -->
+                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pt-12 border-t border-gold/20">
+                    <div class="p-4 rounded-2xl bg-mystic-900/60 border border-gold/15">
+                        <div class="font-cinzel text-2xl md:text-3xl font-bold text-gold">+37 Anos</div>
+                        <div class="text-xs text-gray-400 mt-1 uppercase tracking-wider">De Tradição Oracular</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-mystic-900/60 border border-gold/15">
+                        <div class="font-cinzel text-2xl md:text-3xl font-bold text-gold">25.000+</div>
+                        <div class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Caminhos Iluminados</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-mystic-900/60 border border-gold/15">
+                        <div class="font-cinzel text-2xl md:text-3xl font-bold text-gold">100%</div>
+                        <div class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Sigilo & Respeito</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-mystic-900/60 border border-gold/15">
+                        <div class="font-cinzel text-2xl md:text-3xl font-bold text-gold">Online</div>
+                        <div class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Brasil & Exterior</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= ABOUT CIGANA MARIANA ================= -->
+        <section id="sobre" class="py-20 bg-gradient-to-b from-mystic-950 via-mystic-900/50 to-mystic-950 relative border-t border-gold/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Portrait Visual Presentation -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-sm rounded-3xl p-3 border-2 border-gold/60 shadow-purple-glow bg-mystic-900">
+                            <div class="w-full aspect-[4/5] rounded-2xl overflow-hidden relative bg-gradient-to-b from-mystic-800 via-mystic-900 to-black flex items-center justify-center p-6 text-center">
+                                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gold/25 via-transparent to-transparent"></div>
+                                
+                                <div class="relative z-10 flex flex-col items-center">
+                                    <div class="w-32 h-32 rounded-full border-2 border-gold p-1 mb-4 shadow-gold-glow bg-mystic-950">
+                                        <div class="w-full h-full rounded-full bg-gradient-to-br from-crimson to-mystic-800 flex items-center justify-center">
+                                            <i class="fa-solid fa-hands-holding-circle text-5xl text-gold"></i>
+                                        </div>
+                                    </div>
+                                    <h4 class="font-cinzel text-2xl font-bold text-white">Cigana Mariana</h4>
+                                    <p class="text-xs text-gold-soft font-semibold tracking-widest uppercase mt-1">Oraculista & Sacerdotisa</p>
+                                    
+                                    <div class="mt-3 flex gap-1.5 text-gold text-sm">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    
+                                    <p class="text-xs text-gray-300 mt-4 italic max-w-xs leading-relaxed font-playfair">
+                                        "Com mais de 37 anos dedicados aos oráculos, compreendi que a verdade dita com amor tem o poder de libertar o espírito e guiar passos seguros."
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Floating Seal Badge -->
+                            <div class="absolute -bottom-5 -right-5 bg-gradient-to-r from-gold via-yellow-500 to-gold-dark text-mystic-950 p-4 rounded-2xl shadow-gold-glow flex items-center gap-3 border border-yellow-200">
+                                <i class="fa-solid fa-award text-2xl"></i>
+                                <div>
+                                    <div class="font-bold text-xs uppercase leading-none">+37 Anos</div>
+                                    <div class="text-[10px] font-semibold opacity-90">Tradição Consagrada</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Narrative & Bio -->
+                    <div class="lg:col-span-7">
+                        <span class="text-gold uppercase tracking-[0.3em] text-xs font-semibold">+37 Anos de História & Dedicação</span>
+                        <h2 class="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-2 mb-6">
+                            A Sabedoria Ancestral Comprovada Pelo Tempo
+                        </h2>
+
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
+                            Seja muito bem-vindo(a) ao meu espaço sagrado. Sou <strong class="text-white">Cigana Mariana</strong>. Com <strong class="text-gold">+37 anos de tradição oracular</strong>, dedico minha vida a desvendar os mistérios do Baralho Cigano, do Tarot e a força sagrada do Jogo de Búzios.
+                        </p>
+
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+                            Ao longo de mais de três décadas de atendimentos ininterruptos, auxiliei milhares de consulentes a encontrarem respostas precisas para seus maiores dilemas amorosos e profissionais. Meu compromisso é oferecer clareza absoluta, ética e respeito absoluto pelo seu livre-arbítrio.
+                        </p>
+
+                        <!-- Highlights grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                            <div class="p-4 rounded-xl bg-mystic-900/70 border border-gold/15 flex items-start gap-3">
+                                <i class="fa-solid fa-heart text-gold text-lg mt-1"></i>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Especialista no Amor</h4>
+                                    <p class="text-xs text-gray-400 mt-0.5">Sentimentos reais, intenções ocultas e o futuro de uniões afetivas.</p>
+                                </div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-mystic-900/70 border border-gold/15 flex items-start gap-3">
+                                <i class="fa-solid fa-award text-gold text-lg mt-1"></i>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">+37 Anos de Tradição</h4>
+                                    <p class="text-xs text-gray-400 mt-0.5">Experiência profunda acumulada em décadas de atendimento sério.</p>
+                                </div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-mystic-900/70 border border-gold/15 flex items-start gap-3">
+                                <i class="fa-solid fa-video text-gold text-lg mt-1"></i>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Consulta Online Flexível</h4>
+                                    <p class="text-xs text-gray-400 mt-0.5">Áudios detalhados com fotos em alta definição ou vídeo ao vivo no WhatsApp.</p>
+                                </div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-mystic-900/70 border border-gold/15 flex items-start gap-3">
+                                <i class="fa-solid fa-shield-halved text-gold text-lg mt-1"></i>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Sigilo Absoluto</h4>
+                                    <p class="text-xs text-gray-400 mt-0.5">Espaço seguro, sem julgamentos e com total discrição em todas as sessões.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/5531988956933?text=Ol%C3%A1%20Cigana%20Mariana%2C%20quero%20conversar%20diretamente%20com%20voc%C3%ea." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-gold/10 border border-gold text-gold hover:bg-gold hover:text-mystic-950 font-bold text-xs uppercase tracking-wider transition-all duration-300">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>Falar no WhatsApp (31) 98895-6933</span>
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ORACLES & SERVICES DETAILED ================= -->
+        <section id="oraculos" class="py-20 bg-mystic-950 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-gold uppercase tracking-[0.3em] text-xs font-semibold">+37 Anos de Excelência Oracular</span>
+                    <h2 class="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-2">
+                        Nossos Oráculos & Trabalhos Espirituais
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base mt-3">
+                        Consagre suas escolhas com técnicas tradicionais validadas ao longo de mais de 37 anos de prática espiritual, com total segurança e garantia em cada atendimento.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                    
+                    <!-- Service 1: Tarot -->
+                    <div class="gold-border-card rounded-2xl bg-gradient-to-b from-mystic-900 via-mystic-850 to-mystic-950 p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl border border-gold/40 bg-gold/10 flex items-center justify-center text-gold text-2xl shadow-gold-glow mb-5">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                            <span class="text-[11px] text-gold font-cinzel uppercase tracking-wider font-semibold">Arcanos & Psique</span>
+                            <h3 class="font-cinzel text-xl font-bold text-white mt-1 mb-3">Tarot de Marselha & Rider-Waite</h3>
+                            <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                                Mergulho profundo nos arcanos maiores e menores para revelar o propósito de alma, tendências de futuro e o destino das uniões.
+                            </p>
+                            <ul class="text-xs text-gray-400 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold text-[10px]"></i> Mandala Astrológica de 12 Casas</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold text-[10px]"></i> Templo de Afrodite (Casal)</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold text-[10px]"></i> Previsões semestrais</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-gold/15 flex items-center justify-between">
+                            <span class="text-xs text-gold-soft font-medium">Leitura Completa</span>
+                            <button onclick="preselectService('Tarot de Marselha e Rider-Waite')" class="text-xs font-bold text-gold hover:text-white uppercase tracking-wider flex items-center gap-1 group">
+                                Escolher <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 2: Baralho Cigano -->
+                    <div class="gold-border-card rounded-2xl bg-gradient-to-b from-mystic-900 via-mystic-850 to-mystic-950 p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl border border-gold/40 bg-gold/10 flex items-center justify-center text-gold text-2xl shadow-gold-glow mb-5">
+                                <i class="fa-solid fa-feather-pointed"></i>
+                            </div>
+                            <span class="text-[11px] text-gold font-cinzel uppercase tracking-wider font-semibold">Especialidade Principal</span>
+                            <h3 class="font-cinzel text-xl font-bold text-white mt-1 mb-3">Baralho Cigano (Cartomancia)</h3>
+                            <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                                O carro-chefe dos meus 37 anos de tradição. Respostas rápidas e cirúrgicas para o amor, traições, decisões profissionais e caminhos.
+                            </p>
+                            <ul class="text-xs text-gray-400 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold text-[10px]"></i> Mesa Real dos Acontecimentos</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold text-[10px]"></i> Diagnóstico amoroso detalhado</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold text-[10px]"></i> Respostas diretas de Sim ou Não</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-gold/15 flex items-center justify-between">
+                            <span class="text-xs text-gold-soft font-medium">30m ou 1 hora</span>
+                            <button onclick="preselectService('Baralho Cigano (Cartomancia)')" class="text-xs font-bold text-gold hover:text-white uppercase tracking-wider flex items-center gap-1 group">
+                                Escolher <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 3: Jogo de Búzios -->
+                    <div class="gold-border-card rounded-2xl bg-gradient-to-b from-mystic-900 via-mystic-850 to-mystic-950 p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl border border-gold/40 bg-gold/10 flex items-center justify-center text-gold text-2xl shadow-gold-glow mb-5">
+                                <i class="fa-solid fa-water"></i>
+                            </div>
+                            <span class="text-[11px] text-gold font-cinzel uppercase tracking-wider font-semibold">Voz dos Orixás & Odus</span>
+                            <h3 class="font-cinzel text-xl font-bold text-white mt-1 mb-3">Jogo de Búzios (Oráculo dos Orixás)</h3>
+                            <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                                A força da ancestralidade africana para identificar o seu Orixá guardião, quebrar demandas espirituais e restabelecer o axé.
+                            </p>
+                            <ul class="text-xs text-gray-400 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold text-[10px]"></i> Identificação do Orixá de Cabeça</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold text-[10px]"></i> Diagnóstico de demandas e invejas</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold text-[10px]"></i> Prescrição de firmezas e oferendas</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-gold/15 flex items-center justify-between">
+                            <span class="text-xs text-gold-soft font-medium">Sessão Especial</span>
+                            <button onclick="preselectService('Jogo de Búzios (Oráculo dos Orixás)')" class="text-xs font-bold text-gold hover:text-white uppercase tracking-wider flex items-center gap-1 group">
+                                Escolher <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 4: Limpeza Energética -->
+                    <div class="gold-border-card rounded-2xl bg-gradient-to-b from-mystic-900 via-mystic-850 to-mystic-950 p-6 flex flex-col justify-between border-gold/50">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl border border-gold/40 bg-gold/10 flex items-center justify-center text-gold text-2xl shadow-gold-glow mb-5">
+                                <i class="fa-solid fa-spa"></i>
+                            </div>
+                            <span class="text-[11px] text-gold font-cinzel uppercase tracking-wider font-semibold">Ervas & Alquimia</span>
+                            <h3 class="font-cinzel text-xl font-bold text-white mt-1 mb-3">Limpeza Energética & Abertura de Caminhos</h3>
+                            <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                                Prescrição personalizada de banhos aromáticos, defumações para o lar e rituais sagrados de atração amorosa e prosperidade.
+                            </p>
+                            <ul class="text-xs text-gray-400 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold text-[10px]"></i> Banhos de atração e brilho pessoal</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold text-[10px]"></i> Defumação para limpeza de negócios</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold text-[10px]"></i> Rituais de união e paz familiar</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-gold/15 flex items-center justify-between">
+                            <span class="text-xs text-gold-soft font-medium">Prescrição Guiada</span>
+                            <button onclick="preselectService('Limpeza Energética e Abertura de Caminhos')" class="text-xs font-bold text-gold hover:text-white uppercase tracking-wider flex items-center gap-1 group">
+                                Escolher <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ================= NEW GUARANTEE CARD SECTION ================= -->
+                <div id="garantia" class="gold-border-gradient rounded-3xl p-8 sm:p-10 lg:p-12 relative overflow-hidden bg-gradient-to-r from-mystic-900 via-mystic-850 to-mystic-950 shadow-purple-glow">
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                        <div class="lg:col-span-4 text-center lg:text-left">
+                            <div class="w-20 h-20 rounded-3xl border-2 border-gold bg-gold/15 flex items-center justify-center text-gold text-3xl shadow-gold-intense mx-auto lg:mx-0 mb-4">
+                                <i class="fa-solid fa-shield-heart"></i>
+                            </div>
+                            <span class="text-xs font-cinzel text-gold font-bold uppercase tracking-widest">Compromisso de Excelência</span>
+                            <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-white mt-1">Garantia para Todos os Trabalhos</h3>
+                        </div>
+
+                        <div class="lg:col-span-8 border-t lg:border-t-0 lg:border-l border-gold/25 pt-6 lg:pt-0 lg:pl-8">
+                            <p class="text-gray-200 text-sm sm:text-base leading-relaxed mb-4">
+                                Com <strong class="text-gold">+37 anos de tradição oracular</strong> e milhares de consulentes satisfeitos no Brasil e exterior, a Cigana Mariana oferece <strong>garantia de transparência, seriedade e acompanhamento integral</strong> para todos os tipos de consultas, aberturas de caminhos e trabalhos espirituais.
+                            </p>
+                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6">
+                                Cada ritual, tiragem de cartas ou jogo de búzios é realizado com ética inegociável, respeitando o seu livre-arbítrio e fornecendo orientações práticas fundamentadas na alta espiritualidade cigana e ancestral.
+                            </p>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                                <div class="p-3 rounded-xl bg-mystic-950/80 border border-gold/30 flex items-center gap-3">
+                                    <i class="fa-solid fa-check-circle text-gold text-base"></i>
+                                    <span class="text-xs font-semibold text-white">Ética Inegociável</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-mystic-950/80 border border-gold/30 flex items-center gap-3">
+                                    <i class="fa-solid fa-lock text-gold text-base"></i>
+                                    <span class="text-xs font-semibold text-white">Sigilo Absoluto</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-mystic-950/80 border border-gold/30 flex items-center gap-3">
+                                    <i class="fa-solid fa-award text-gold text-base"></i>
+                                    <span class="text-xs font-semibold text-white">+37 Anos de Tradição</span>
+                                </div>
+                            </div>
+
+                            <a href="https://wa.me/5531988956933?text=Ol%C3%A1%20Cigana%20Mariana%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20garantia%20e%20os%20trabalhos." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gold text-mystic-950 font-bold text-xs uppercase tracking-wider shadow-gold-glow hover:scale-105 transition-transform">
+                                <i class="fa-brands fa-whatsapp text-base"></i>
+                                <span>Falar com Mariana sobre Garantia (31) 98895-6933</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= INTERACTIVE SECTION: JOGO INTERATIVO (3 CARTAS & BÚZIOS) ================= -->
+        <section id="ferramentas" class="py-20 bg-gradient-to-b from-mystic-950 via-mystic-900/80 to-mystic-950 relative border-t border-gold/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-semibold uppercase tracking-widest mb-3">
+                        <i class="fa-solid fa-wand-magic-sparkles text-xs"></i> +37 Anos de Tradição em Experiência Gratuita
+                    </div>
+                    <h2 class="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-1">
+                        Jogo Interativo da Cigana Mariana
+                    </h2>
+                    <p class="text-gray-300 text-sm sm:text-base mt-3">
+                        Feche os olhos por alguns instantes, respire fundo, conecte-se com a sua pergunta e escolha a ferramenta mágica que deseja consultar agora.
+                    </p>
+
+                    <!-- Interactive Switch Tabs -->
+                    <div class="inline-flex p-1.5 rounded-full bg-mystic-900 border border-gold/40 mt-8 shadow-inner">
+                        <button id="tab-tarot" onclick="switchOracleTab('tarot')" class="px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider transition-all duration-300 bg-gold text-mystic-950 shadow-gold-glow">
+                            <i class="fa-solid fa-cards mr-1.5"></i> Jogo de 3 Cartas (Passado, Presente, Futuro)
+                        </button>
+                        <button id="tab-buzios" onclick="switchOracleTab('buzios')" class="px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider text-gray-400 hover:text-gold transition-all duration-300">
+                            <i class="fa-solid fa-ring mr-1.5"></i> Jogo de Búzios Virtual
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ================= TAB 1: JOGO DE 3 CARTAS ================= -->
+                <div id="container-tarot-oracle" class="transition-all duration-500">
+                    <div class="max-w-5xl mx-auto text-center">
+                        
+                        <div class="max-w-2xl mx-auto mb-8">
+                            <span class="text-gold text-xs font-cinzel uppercase tracking-widest">Sincronicidade Cósmica</span>
+                            <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-white mt-1 mb-2">Tiragem de 3 Cartas</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Escolha uma carta para o <strong class="text-gold">Passado</strong>, outra para o <strong class="text-gold">Presente</strong> e a terceira para o <strong class="text-gold">Futuro</strong>. Clique em cada carta para virá-la.
+                            </p>
+                        </div>
+
+                        <!-- 3 Cards Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
+                            
+                            <!-- Card 1: Passado -->
+                            <div class="flex flex-col items-center">
+                                <span class="text-xs font-cinzel text-gold font-bold uppercase tracking-wider mb-2">1. O Passado</span>
+                                <div class="perspective-1000 w-[240px] h-[360px] relative cursor-pointer" onclick="flipThreeCard(0)">
+                                    <div id="three-card-0" class="transform-style-3d relative w-full h-full rounded-2xl shadow-card-flip">
+                                        <!-- Back -->
+                                        <div class="backface-hidden absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-br from-mystic-900 via-mystic-850 to-crimson-dark border-2 border-gold/70 p-4 flex flex-col items-center justify-between overflow-hidden">
+                                            <div class="text-gold/80 text-[10px] tracking-widest uppercase font-cinzel">Cigana Mariana</div>
+                                            <div class="w-20 h-20 rounded-full border border-gold/50 flex items-center justify-center bg-gold/10">
+                                                <i class="fa-solid fa-eye text-gold text-2xl animate-pulse"></i>
+                                            </div>
+                                            <span class="text-[10px] text-gold font-cinzel tracking-widest">VIRAR CARTA</span>
+                                        </div>
+                                        <!-- Front -->
+                                        <div class="backface-hidden rotate-y-180 absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-b from-mystic-900 via-mystic-950 to-black border-2 border-gold p-4 flex flex-col justify-between text-center overflow-hidden">
+                                            <span class="text-[10px] text-gold uppercase tracking-widest font-semibold" id="card-0-pos">Passado</span>
+                                            <div class="my-auto py-2 flex flex-col items-center">
+                                                <div class="w-16 h-16 rounded-full border border-gold/70 bg-gold/10 flex items-center justify-center mb-2 shadow-gold-glow">
+                                                    <i id="card-0-icon" class="fa-solid fa-heart text-2xl text-gold"></i>
+                                                </div>
+                                                <h4 id="card-0-name" class="font-cinzel text-lg font-bold text-white">O Coração</h4>
+                                                <p id="card-0-sub" class="text-[11px] text-gold-soft italic">Afeto e Raízes</p>
+                                            </div>
+                                            <div class="text-[10px] text-gray-300 bg-mystic-900/90 p-2 rounded-lg border border-gold/20" id="card-0-desc">
+                                                Raízes emocionais profundas no passado.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: Presente -->
+                            <div class="flex flex-col items-center">
+                                <span class="text-xs font-cinzel text-gold font-bold uppercase tracking-wider mb-2">2. O Presente</span>
+                                <div class="perspective-1000 w-[240px] h-[360px] relative cursor-pointer" onclick="flipThreeCard(1)">
+                                    <div id="three-card-1" class="transform-style-3d relative w-full h-full rounded-2xl shadow-card-flip">
+                                        <!-- Back -->
+                                        <div class="backface-hidden absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-br from-mystic-900 via-mystic-850 to-crimson-dark border-2 border-gold/70 p-4 flex flex-col items-center justify-between overflow-hidden">
+                                            <div class="text-gold/80 text-[10px] tracking-widest uppercase font-cinzel">Cigana Mariana</div>
+                                            <div class="w-20 h-20 rounded-full border border-gold/50 flex items-center justify-center bg-gold/10">
+                                                <i class="fa-solid fa-eye text-gold text-2xl animate-pulse"></i>
+                                            </div>
+                                            <span class="text-[10px] text-gold font-cinzel tracking-widest">VIRAR CARTA</span>
+                                        </div>
+                                        <!-- Front -->
+                                        <div class="backface-hidden rotate-y-180 absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-b from-mystic-900 via-mystic-950 to-black border-2 border-gold p-4 flex flex-col justify-between text-center overflow-hidden">
+                                            <span class="text-[10px] text-gold uppercase tracking-widest font-semibold">Presente</span>
+                                            <div class="my-auto py-2 flex flex-col items-center">
+                                                <div class="w-16 h-16 rounded-full border border-gold/70 bg-gold/10 flex items-center justify-center mb-2 shadow-gold-glow">
+                                                    <i id="card-1-icon" class="fa-solid fa-key text-2xl text-gold"></i>
+                                                </div>
+                                                <h4 id="card-1-name" class="font-cinzel text-lg font-bold text-white">A Chave</h4>
+                                                <p id="card-1-sub" class="text-[11px] text-gold-soft italic">Soluções e Decisões</p>
+                                            </div>
+                                            <div class="text-[10px] text-gray-300 bg-mystic-900/90 p-2 rounded-lg border border-gold/20" id="card-1-desc">
+                                                Portas se abrindo no momento atual.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 3: Futuro -->
+                            <div class="flex flex-col items-center">
+                                <span class="text-xs font-cinzel text-gold font-bold uppercase tracking-wider mb-2">3. O Futuro</span>
+                                <div class="perspective-1000 w-[240px] h-[360px] relative cursor-pointer" onclick="flipThreeCard(2)">
+                                    <div id="three-card-2" class="transform-style-3d relative w-full h-full rounded-2xl shadow-card-flip">
+                                        <!-- Back -->
+                                        <div class="backface-hidden absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-br from-mystic-900 via-mystic-850 to-crimson-dark border-2 border-gold/70 p-4 flex flex-col items-center justify-between overflow-hidden">
+                                            <div class="text-gold/80 text-[10px] tracking-widest uppercase font-cinzel">Cigana Mariana</div>
+                                            <div class="w-20 h-20 rounded-full border border-gold/50 flex items-center justify-center bg-gold/10">
+                                                <i class="fa-solid fa-eye text-gold text-2xl animate-pulse"></i>
+                                            </div>
+                                            <span class="text-[10px] text-gold font-cinzel tracking-widest">VIRAR CARTA</span>
+                                        </div>
+                                        <!-- Front -->
+                                        <div class="backface-hidden rotate-y-180 absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-b from-mystic-900 via-mystic-950 to-black border-2 border-gold p-4 flex flex-col justify-between text-center overflow-hidden">
+                                            <span class="text-[10px] text-gold uppercase tracking-widest font-semibold">Futuro</span>
+                                            <div class="my-auto py-2 flex flex-col items-center">
+                                                <div class="w-16 h-16 rounded-full border border-gold/70 bg-gold/10 flex items-center justify-center mb-2 shadow-gold-glow">
+                                                    <i id="card-2-icon" class="fa-solid fa-sun text-2xl text-gold"></i>
+                                                </div>
+                                                <h4 id="card-2-name" class="font-cinzel text-lg font-bold text-white">O Sol</h4>
+                                                <p id="card-2-sub" class="text-[11px] text-gold-soft italic">Sucesso e Triunfo</p>
+                                            </div>
+                                            <div class="text-[10px] text-gray-300 bg-mystic-900/90 p-2 rounded-lg border border-gold/20" id="card-2-desc">
+                                                Brilho, vitória e clareza no futuro.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Shuffle Button -->
+                        <button onclick="shuffleThreeCards()" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-gold via-yellow-500 to-gold-dark text-mystic-950 font-bold text-xs sm:text-sm tracking-wider uppercase shadow-gold-glow hover:scale-105 active:scale-95 transition-all duration-300 inline-flex items-center gap-2">
+                            <i class="fa-solid fa-shuffle"></i> Embaralhar Novas Cartas
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- ================= TAB 2: JOGO DE BÚZIOS VIRTUAL ================= -->
+                <div id="container-buzios-oracle" class="hidden transition-all duration-500 max-w-4xl mx-auto">
+                    <div class="gold-border-gradient rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl relative">
+                        
+                        <div class="text-center max-w-2xl mx-auto mb-8">
+                            <span class="text-gold font-cinzel text-xs tracking-widest uppercase">Tradição dos 4 Búzios Sagrados</span>
+                            <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-white mt-1">Jogo de Búzios Virtual</h3>
+                            <p class="text-gray-300 text-xs sm:text-sm mt-2">
+                                Faça uma pergunta clara em seu pensamento e clique no botão abaixo para lançar os búzios na peneira ritualística.
+                            </p>
+                        </div>
+
+                        <!-- Sacred Shells Table (Opon de Veludo) -->
+                        <div class="relative w-full max-w-md mx-auto aspect-square rounded-full opon-felt border-4 border-gold/70 p-6 flex items-center justify-center overflow-hidden mb-8">
+                            <div class="absolute inset-4 rounded-full border border-dashed border-gold/30 pointer-events-none"></div>
+                            <div class="absolute inset-12 rounded-full border border-gold/15 pointer-events-none"></div>
+                            <div class="absolute text-gold/10 font-cinzel text-6xl select-none pointer-events-none font-bold">AXÉ</div>
+
+                            <!-- 4 Shells Container -->
+                            <div id="buzios-tray" class="relative w-full h-full"></div>
+                        </div>
+
+                        <!-- Action controls -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+                            <button id="throw-buzios-btn" onclick="throwSacredBuzios()" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-gold via-yellow-500 to-gold-dark text-mystic-950 font-bold text-sm tracking-wider uppercase shadow-gold-glow hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-3">
+                                <i class="fa-solid fa-hand-holding-hand text-base"></i>
+                                <span>Lançar os 4 Búzios Agora</span>
+                            </button>
+                        </div>
+
+                        <!-- Fall / Caída Result Reveal -->
+                        <div id="buzios-result-card" class="bg-mystic-950/95 rounded-2xl border border-gold/40 p-6 shadow-inner text-center">
+                            <div class="inline-block px-3 py-1 rounded-full bg-gold/15 border border-gold/30 text-gold text-xs font-semibold uppercase tracking-wider mb-2" id="buzios-caida-name">
+                                Resposta: SIM ABSOLUTO (Aláfia)
+                            </div>
+                            <h4 class="font-cinzel text-xl sm:text-2xl font-bold text-white mb-2" id="buzios-odu-title">
+                                Caminhos Abertos e Proteção dos Orixás
+                            </h4>
+                            <p class="text-gray-300 text-sm max-w-2xl mx-auto leading-relaxed mb-4" id="buzios-guidance-text">
+                                A espiritualidade responde de forma afirmativa e tranquila. Suas intenções estão alinhadas com o bem maior e não há travas que não possam ser desfeitas com a força da sua fé.
+                            </p>
+
+                            <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-gold-soft border-t border-gold/15 pt-4">
+                                <div><i class="fa-solid fa-check-double text-gold mr-1"></i> <span id="buzios-verdict-tag">Veredito: SIM Confirmado</span></div>
+                                <div><i class="fa-solid fa-shield-halved text-gold mr-1"></i> <span id="buzios-protection-tag">Regência: Oxalá & Iemanjá</span></div>
+                                <div><i class="fa-solid fa-leaf text-gold mr-1"></i> <span id="buzios-herb-tag">Conselho: Banho de Manjericão</span></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= SMART BOOKING CALCULATOR & WHATSAPP REDIRECTOR ================= -->
+        <section id="agendamento" class="py-20 bg-gradient-to-b from-mystic-950 via-mystic-900 to-mystic-950 relative border-t border-gold/20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-gold uppercase tracking-[0.3em] text-xs font-semibold">Atendimento com +37 Anos de Tradição</span>
+                    <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white mt-1">
+                        Agendamento Inteligente
+                    </h2>
+                    <p class="text-gray-300 text-sm mt-2">
+                        Preencha o formulário abaixo para gerar instantaneamente a sua mensagem personalizada e falar direto no WhatsApp oficial <strong>(31) 98895-6933</strong> da Cigana Mariana.
+                    </p>
+                </div>
+
+                <!-- Form Card -->
+                <div class="gold-border-gradient rounded-3xl p-6 sm:p-10 shadow-purple-glow">
+                    <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="space-y-6">
+                        
+                        <!-- Row 1: Name and WhatsApp -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-gold-soft uppercase tracking-wider mb-2">Seu Nome Completo *</label>
+                                <input type="text" id="client-name" required placeholder="Como prefere ser chamado(a)?" class="w-full bg-mystic-950 border border-gold/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gold-soft uppercase tracking-wider mb-2">Seu WhatsApp / Telefone *</label>
+                                <input type="tel" id="client-phone" required placeholder="(DDD) 99999-9999" class="w-full bg-mystic-950 border border-gold/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors">
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Oracle Selection & Format -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-gold-soft uppercase tracking-wider mb-2">Tipo de Tiragem Desejada *</label>
+                                <select id="oracle-choice" class="w-full bg-mystic-950 border border-gold/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors">
+                                    <option value="Tarot Completo (Marselha e Rider-Waite)">Tarot Completo (Marselha e Rider-Waite)</option>
+                                    <option value="Baralho Cigano (Amor, Trabalho e Decisões)">Baralho Cigano (Amor, Trabalho e Decisões)</option>
+                                    <option value="Jogo de Búzios (Oráculo dos Orixás)">Jogo de Búzios (Oráculo dos Orixás)</option>
+                                    <option value="Consulta Rápida (Direto ao Ponto)">Consulta Rápida (Direto ao Ponto)</option>
+                                    <option value="Limpeza Energética & Abertura de Caminhos">Limpeza Energética & Abertura de Caminhos</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-gold-soft uppercase tracking-wider mb-2">Formato de Atendimento *</label>
+                                <select id="session-format" class="w-full bg-mystic-950 border border-gold/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors">
+                                    <option value="Online via WhatsApp (Áudios detalhados + fotos das cartas)">Online via WhatsApp (Áudios detalhados + fotos)</option>
+                                    <option value="Online via Chamada de Vídeo ao Vivo">Online via Chamada de Vídeo ao Vivo</option>
+                                    <option value="Consulta Presencial">Consulta Presencial</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: Date & Period -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-gold-soft uppercase tracking-wider mb-2">Data de Preferência</label>
+                                <input type="date" id="pref-date" class="w-full bg-mystic-950 border border-gold/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-gold-soft uppercase tracking-wider mb-2">Melhor Período do Dia</label>
+                                <select id="pref-period" class="w-full bg-mystic-950 border border-gold/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors">
+                                    <option value="Manhã (09h às 12h)">Manhã (09h às 12h)</option>
+                                    <option value="Tarde (13h às 18h)">Tarde (13h às 18h)</option>
+                                    <option value="Noite (19h às 22h)">Noite (19h às 22h)</option>
+                                    <option value="Primeiro horário disponível">Primeiro horário disponível</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row 4: Notes / Main Question -->
+                        <div>
+                            <label class="block text-xs font-semibold text-gold-soft uppercase tracking-wider mb-2">Qual o foco principal da sua consulta? (Opcional)</label>
+                            <textarea id="client-notes" rows="3" placeholder="Ex: Preciso entender sobre o amor e caminhos profissionais..." class="w-full bg-mystic-950 border border-gold/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"></textarea>
+                        </div>
+
+                        <!-- Reassurance notice -->
+                        <div class="p-3.5 rounded-xl bg-gold/5 border border-gold/20 flex items-center gap-3 text-xs text-gold-soft">
+                            <i class="fa-solid fa-lock text-gold text-base"></i>
+                            <span>Sigilo estritamente resguardado. Ao enviar, o WhatsApp (31) 98895-6933 abrirá com sua mensagem formatada.</span>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-gold via-yellow-500 to-gold-dark text-mystic-950 font-bold text-sm tracking-wider uppercase shadow-gold-glow hover:scale-[1.02] active:scale-[0.99] transition-all duration-300 flex items-center justify-center gap-3">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            <span>Agendar Consulta no WhatsApp (31) 98895-6933</span>
+                        </button>
+
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= TESTIMONIALS ================= -->
+        <section id="depoimentos" class="py-20 bg-mystic-950 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-gold uppercase tracking-[0.3em] text-xs font-semibold">Depoimentos & Experiências</span>
+                    <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white mt-2">
+                        Quem Consultou com a Cigana Mariana
+                    </h2>
+                    <p class="text-gray-400 text-sm mt-3">
+                        Histórias de vidas transformadas por conselhos oraculares conscientes e fundamentados em mais de 37 anos de tradição.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Review 1 -->
+                    <div class="gold-border-gradient rounded-2xl p-7 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-1 text-gold text-xs mb-4">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span class="ml-2 text-[10px] text-gray-400 font-sans">Baralho Cigano</span>
+                            </div>
+                            <p class="text-gray-300 text-sm italic leading-relaxed mb-6 font-playfair">
+                                "Eu estava perdida após um término confuso. A Mariana não me iludiu, mas foi cirúrgica ao explicar o que ele sentia. Os 37 anos de experiência dela pesam muito: suas previsões aconteceram com precisão impressionante em apenas duas semanas!"
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 border-t border-gold/15 pt-4">
+                            <div class="w-10 h-10 rounded-full bg-crimson border border-gold flex items-center justify-center font-cinzel font-bold text-gold text-sm">
+                                VA
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Vanessa Albuquerque</h4>
+                                <span class="text-[11px] text-gray-400">Belo Horizonte, MG • Consulta via WhatsApp</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="gold-border-gradient rounded-2xl p-7 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-1 text-gold text-xs mb-4">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span class="ml-2 text-[10px] text-gray-400 font-sans">Jogo de Búzios</span>
+                            </div>
+                            <p class="text-gray-300 text-sm italic leading-relaxed mb-6 font-playfair">
+                                "O jogo de búzios com a Cigana Mariana foi um divisor de águas. Minha vida profissional parecia travada. Fiz a limpeza energética recomendada por ela com toda a sabedoria de sua tradição e tudo começou a andar em velocidade recorde."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 border-t border-gold/15 pt-4">
+                            <div class="w-10 h-10 rounded-full bg-mystic-700 border border-gold flex items-center justify-center font-cinzel font-bold text-gold text-sm">
+                                MR
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Marcos Resende</h4>
+                                <span class="text-[11px] text-gray-400">São Paulo, SP • Consulta Completa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="gold-border-gradient rounded-2xl p-7 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-1 text-gold text-xs mb-4">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span class="ml-2 text-[10px] text-gray-400 font-sans">Tarot</span>
+                            </div>
+                            <p class="text-gray-300 text-sm italic leading-relaxed mb-6 font-playfair">
+                                "Já consultei com vários cartomantes, mas a energia da Mariana é incomparável. Ela tem uma fala doce, segura e cheia de respeito. Saí da sessão com o coração calmo e muita clareza sobre minhas próximas escolhas de vida."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 border-t border-gold/15 pt-4">
+                            <div class="w-10 h-10 rounded-full bg-crimson-dark border border-gold flex items-center justify-center font-cinzel font-bold text-gold text-sm">
+                                BS
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Beatriz Silveira</h4>
+                                <span class="text-[11px] text-gray-400">Lisboa, Portugal • Consulta Online</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= FAQ ACCORDION ================= -->
+        <section id="faq" class="py-20 bg-gradient-to-b from-mystic-950 via-mystic-900/60 to-mystic-950 border-t border-gold/15">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="text-gold uppercase tracking-[0.3em] text-xs font-semibold">Esclareça Suas Dúvidas</span>
+                    <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white mt-1">
+                        Perguntas Frequentes (FAQ)
+                    </h2>
+                    <p class="text-gray-400 text-sm mt-2">
+                        Informações práticas sobre sigilo, funcionamento das consultas online e formas de pagamento.
+                    </p>
+                </div>
+
+                <div class="space-y-4" id="faq-accordion">
+                    
+                    <!-- FAQ 1 -->
+                    <div class="gold-border-gradient rounded-2xl overflow-hidden transition-all duration-300">
+                        <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between font-cinzel text-sm sm:text-base font-semibold text-white focus:outline-none">
+                            <span>Como funciona a consulta online com a Cigana Mariana?</span>
+                            <i class="fa-solid fa-chevron-down text-gold text-xs transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6">
+                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed pb-5 border-t border-gold/10 pt-3">
+                                A consulta é agendada previamente pelo WhatsApp <strong>(31) 98895-6933</strong>. Na hora marcada, podemos realizar via <strong>chamada de vídeo ao vivo</strong> onde você vê as cartas e búzios na mesa, ou por <strong>áudios explicativos gravados com fotos em alta resolução</strong> de cada jogada, caso prefira ouvir com calma no seu tempo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="gold-border-gradient rounded-2xl overflow-hidden transition-all duration-300">
+                        <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between font-cinzel text-sm sm:text-base font-semibold text-white focus:outline-none">
+                            <span>A leitura à distância possui a mesma precisão do presencial?</span>
+                            <i class="fa-solid fa-chevron-down text-gold text-xs transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6">
+                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed pb-5 border-t border-gold/10 pt-3">
+                                Sim, 100% igual. Com mais de 37 anos de tradição oracular, sintonizo a sua energia através do seu nome de batismo e data de nascimento, respondendo com a mesma exatidão e profundidade que em sessões presenciais.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="gold-border-gradient rounded-2xl overflow-hidden transition-all duration-300">
+                        <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between font-cinzel text-sm sm:text-base font-semibold text-white focus:outline-none">
+                            <span>Quais são as formas de pagamento disponíveis?</span>
+                            <i class="fa-solid fa-chevron-down text-gold text-xs transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6">
+                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed pb-5 border-t border-gold/10 pt-3">
+                                Aceitamos <strong>PIX</strong> (com confirmação instantânea), Cartão de Crédito e transferências internacionais via <strong>PayPal e Wise</strong> para consulentes que residem nos Estados Unidos, Europa e outros países.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="gold-border-gradient rounded-2xl overflow-hidden transition-all duration-300">
+                        <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between font-cinzel text-sm sm:text-base font-semibold text-white focus:outline-none">
+                            <span>As cartas mostram um destino imutável?</span>
+                            <i class="fa-solid fa-chevron-down text-gold text-xs transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6">
+                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed pb-5 border-t border-gold/10 pt-3">
+                                Não! As cartas e os búzios mostram as <strong>tendências mais fortes</strong> com base nas energias do momento presente. O poder supremo do seu <em>livre-arbítrio</em> é sagrado: ao saber de um desafio com antecedência, você pode mudar suas atitudes e alterar o rumo do seu futuro.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= FOOTER ================= -->
+        <footer class="bg-black/95 border-t border-gold/20 pt-16 pb-12 text-gray-400 text-xs">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                    
+                    <!-- Col 1: About Mariana -->
+                    <div class="md:col-span-1">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-9 h-9 rounded-full border border-gold flex items-center justify-center bg-mystic-900 shadow-gold-glow">
+                                <i class="fa-solid fa-gem text-gold text-sm"></i>
+                            </div>
+                            <span class="font-cinzel font-bold text-white tracking-wider">CIGANA MARIANA</span>
+                        </div>
+                        <p class="text-gray-400 leading-relaxed text-xs">
+                            Mais de 37 anos de tradição oracular em Cartomancia, Tarot e Jogo de Búzios com acolhimento, verdade e proteção espiritual.
+                        </p>
+                        <div class="mt-4 flex gap-3 text-gold">
+                            <a href="#" class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center hover:bg-gold hover:text-mystic-950 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://wa.me/5531988956933" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center hover:bg-gold hover:text-mystic-950 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                            <a href="#" class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center hover:bg-gold hover:text-mystic-950 transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Col 2: Navigation -->
+                    <div>
+                        <h4 class="font-cinzel text-white text-sm font-bold uppercase tracking-wider mb-4 border-l-2 border-gold pl-2">Navegação</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#inicio" class="hover:text-gold transition-colors">Início</a></li>
+                            <li><a href="#sobre" class="hover:text-gold transition-colors">Sobre a Mariana</a></li>
+                            <li><a href="#oraculos" class="hover:text-gold transition-colors">Nossos Oráculos</a></li>
+                            <li><a href="#ferramentas" class="hover:text-gold transition-colors">Jogo Interativo Online</a></li>
+                            <li><a href="#agendamento" class="hover:text-gold transition-colors">Agendamento Inteligente</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Col 3: Ethical Disclaimer -->
+                    <div>
+                        <h4 class="font-cinzel text-white text-sm font-bold uppercase tracking-wider mb-4 border-l-2 border-gold pl-2">Aviso Ético & Sigilo</h4>
+                        <p class="leading-relaxed text-gray-400">
+                            As consultas com Cigana Mariana possuem caráter holístico e espiritual, respaldadas por mais de 37 anos de tradição. Não substituem tratamentos médicos ou jurídicos. Garantimos sigilo absoluto.
+                        </p>
+                    </div>
+
+                    <!-- Col 4: Contact and Hours -->
+                    <div>
+                        <h4 class="font-cinzel text-white text-sm font-bold uppercase tracking-wider mb-4 border-l-2 border-gold pl-2">Atendimento</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-clock text-gold"></i>
+                                <span>Seg a Sáb: 09:00 às 22:00</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-gold"></i>
+                                <span class="font-semibold text-white">(31) 98895-6933</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-globe text-gold"></i>
+                                <span>Consultas Online (Brasil e Exterior)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="pt-8 border-t border-gold/15 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 gap-4">
+                    <p>© 2026 Cigana Mariana - +37 Anos de Tradição Oracular. Todos os direitos reservados.</p>
+                    <p class="flex items-center gap-1">
+                        WhatsApp Oficial: <strong class="text-gold">(31) 98895-6933</strong>
+                    </p>
+                </div>
+
+            </div>
+        </footer>
+
+        <!-- ================= FLOATING WHATSAPP BUTTON ================= -->
+        <a href="https://wa.me/5531988956933?text=Ol%C3%A1%20Cigana%20Mariana%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20as%20consultas%20de%20Cartomancia%2C%20Tarot%20e%20B%C3%BAzios." target="_blank" rel="noopener noreferrer" aria-label="Falar com Cigana Mariana no WhatsApp" class="fixed bottom-6 right-6 z-50 group flex items-center justify-center">
+            <span class="absolute w-16 h-16 rounded-full bg-emerald-500/30 animate-ping pointer-events-none"></span>
+            <div class="relative w-14 h-14 rounded-full bg-gradient-to-tr from-emerald-600 to-green-400 text-white flex items-center justify-center shadow-lg shadow-emerald-950/60 border-2 border-gold/70 group-hover:scale-110 transition-transform duration-300">
+                <i class="fa-brands fa-whatsapp text-3xl"></i>
+            </div>
+            <span class="absolute right-16 px-3 py-1.5 rounded-lg bg-mystic-900 border border-gold/40 text-gold-soft text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg">
+                (31) 98895-6933 - Falar com Mariana
+            </span>
+        </a>
+
+        <!-- ================= NOTIFICATION TOAST ================= -->
+        <div id="toast-notification" class="fixed bottom-6 left-6 z-50 max-w-sm p-4 rounded-2xl bg-mystic-900 border border-gold text-white shadow-2xl transition-all duration-500 translate-y-24 opacity-0 pointer-events-none flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gold/20 border border-gold text-gold flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-sparkles text-lg" id="toast-icon"></i>
+            </div>
+            <div>
+                <h5 class="text-xs font-bold text-gold uppercase tracking-wider" id="toast-title">Aviso</h5>
+                <p class="text-xs text-gray-300 mt-0.5 leading-snug" id="toast-msg">Mensagem</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        /* -------------------------------------------------------------
+           1. WEB AUDIO SYNTHESIZER (MYSTICAL BELLS & SHELL SOUNDS)
+        ------------------------------------------------------------- */
+        const AudioFX = {
+            ctx: null,
+            init() {
+                if (!this.ctx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContext) {
+                        this.ctx = new AudioContext();
+                    }
+                }
+            },
+            playChime() {
+                try {
+                    this.init();
+                    if (!this.ctx) return;
+                    if (this.ctx.state === 'suspended') {
+                        this.ctx.resume();
+                    }
+                    const now = this.ctx.currentTime;
+                    [528, 660, 792].forEach((freq, idx) => {
+                        const osc = this.ctx.createOscillator();
+                        const gain = this.ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.05);
+                        gain.gain.setValueAtTime(0.08, now + idx * 0.05);
+                        gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.2 + idx * 0.2);
+                        osc.connect(gain);
+                        gain.connect(this.ctx.destination);
+                        osc.start(now + idx * 0.05);
+                        osc.stop(now + 1.5);
+                    });
+                } catch(e) {
+                    console.log("Audio FX fallback", e);
+                }
+            },
+            playShellRattle() {
+                try {
+                    this.init();
+                    if (!this.ctx) return;
+                    if (this.ctx.state === 'suspended') {
+                        this.ctx.resume();
+                    }
+                    const now = this.ctx.currentTime;
+                    const bufferSize = this.ctx.sampleRate * 0.35;
+                    const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+                    const data = buffer.getChannelData(0);
+                    for (let i = 0; i < bufferSize; i++) {
+                        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.2));
+                    }
+                    const noise = this.ctx.createBufferSource();
+                    noise.buffer = buffer;
+                    const filter = this.ctx.createBiquadFilter();
+                    filter.type = 'bandpass';
+                    filter.frequency.value = 1900;
+                    filter.Q.value = 3.0;
+
+                    const gain = this.ctx.createGain();
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+                    noise.connect(filter);
+                    filter.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    noise.start(now);
+                } catch(e) {
+                    console.log("Shell Audio fallback", e);
+                }
+            }
+        };
+
+        /* -------------------------------------------------------------
+           2. CELESTIAL STARDUST CANVAS ANIMATION
+        ------------------------------------------------------------- */
+        (function initStarfield() {
+            const canvas = document.getElementById('stars-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let width, height, stars = [];
+
+            function resize() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+                createStars();
+            }
+
+            function createStars() {
+                stars = [];
+                const count = Math.floor((width * height) / 4500);
+                for (let i = 0; i < count; i++) {
+                    stars.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        radius: Math.random() * 1.3 + 0.3,
+                        alpha: Math.random() * 0.7 + 0.2,
+                        speed: Math.random() * 0.02 + 0.006,
+                        color: Math.random() > 0.4 ? '#d4af37' : '#c084fc'
+                    });
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                stars.forEach(s => {
+                    s.alpha += s.speed;
+                    if (s.alpha > 0.95 || s.alpha < 0.2) {
+                        s.speed = -s.speed;
+                    }
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = s.color;
+                    ctx.globalAlpha = Math.max(0, Math.min(1, s.alpha));
+                    ctx.fill();
+                });
+                requestAnimationFrame(animate);
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
+            animate();
+        })();
+
+        /* -------------------------------------------------------------
+           3. THREE CARDS ORACLE DATA & LOGIC (PAST, PRESENT, FUTURE)
+        ------------------------------------------------------------- */
+        const oracleCardsDeck = [
+            { name: "O Coração", sub: "Amor & Paixão", icon: "fa-heart", desc: "Abertura emocional profunda, reconciliação e afeto sincero." },
+            { name: "A Chave", sub: "Soluções & Decisões", icon: "fa-key", desc: "Respostas claras e portas se abrindo no seu caminho." },
+            { name: "O Sol", sub: "Sucesso & Triunfo", icon: "fa-sun", desc: "Brilho, vitória definitiva e clareza mental absoluta." },
+            { name: "O Trevo", sub: "Sorte & Alívio", icon: "fa-clover", desc: "Pequenas vitórias rápidas e superação de obstáculos." },
+            { name: "O Navio", sub: "Caminhos & Mudança", icon: "fa-sailboat", desc: "Novos horizontes, viagens e transições altamente positivas." },
+            { name: "A Estrela", sub: "Esperança & Guia", icon: "fa-wand-magic-sparkles", desc: "Renovação da fé, bênção divina e proteção espiritual." },
+            { name: "A Âncora", sub: "Estabilidade & Firmeza", icon: "fa-anchor", desc: "Segurança profissional e conquistas duradouras." }
+        ];
+
+        let threeCardsFlipped = [false, false, false];
+        let threeCardsData = [null, null, null];
+
+        function shuffleThreeCards() {
+            AudioFX.playChime();
+            threeCardsFlipped = [false, false, false];
+            
+            // Pick 3 random distinct cards
+            const shuffled = [...oracleCardsDeck].sort(() => 0.5 - Math.random());
+            threeCardsData = [shuffled[0], shuffled[1], shuffled[2]];
+
+            for (let i = 0; i < 3; i++) {
+                const el = document.getElementById(`three-card-${i}`);
+                el.classList.remove('rotate-y-180');
+
+                // Populate front data
+                document.getElementById(`card-${i}-name`).textContent = threeCardsData[i].name;
+                document.getElementById(`card-${i}-sub`).textContent = threeCardsData[i].sub;
+                document.getElementById(`card-${i}-desc`).textContent = threeCardsData[i].desc;
+                document.getElementById(`card-${i}-icon`).className = `fa-solid ${threeCardsData[i].icon} text-2xl text-gold`;
+            }
+            showToast("Cartas Embaralhadas", "Escolha suas cartas para o Passado, Presente e Futuro.");
+        }
+
+        function flipThreeCard(index) {
+            AudioFX.playChime();
+            const el = document.getElementById(`three-card-${index}`);
+            el.classList.add('rotate-y-180');
+            threeCardsFlipped[index] = true;
+
+            const posName = index === 0 ? 'Passado' : index === 1 ? 'Presente' : 'Futuro';
+            showToast(`Carta Revelada (${posName})`, `${threeCardsData[index].name} - ${threeCardsData[index].sub}`);
+        }
+
+        // Initialize cards on load
+        shuffleThreeCards();
+
+        /* -------------------------------------------------------------
+           4. VIRTUAL BÚZIOS ORACLE (4 SHELLS)
+        ------------------------------------------------------------- */
+        const buziosFalls = [
+            {
+                name: "Aláfia (4 Búzios Abertos)",
+                title: "Sim Absoluto e Vitória Plena",
+                text: "A resposta das forças sagradas é um SIM radiante. Suas dúvidas são dissipadas por uma onda de paz e bênçãos. Prossiga sem medo.",
+                verdict: "SIM Confirmado",
+                protect: "Oxalá & Iemanjá",
+                herb: "Banho de Manjericão"
+            },
+            {
+                name: "Ejionile (3 Búzios Abertos, 1 Fechado)",
+                title: "Caminhos de Conquista e Luz",
+                text: "Há clareza na situação. Suas intenções estão protegidas, exigindo apenas foco e dedicação para colher os frutos desejados.",
+                verdict: "Sim com Atitude",
+                protect: "Ogum & Iansã",
+                herb: "Banho de Alfazema"
+            },
+            {
+                name: "Okorán (2 Búzios Abertos, 2 Fechados)",
+                title: "Atenção Redobrada e Cautela",
+                text: "Momento de reflexão e prudência. Evite precipitações e proteja sua energia contra influências externas negativas.",
+                verdict: "Cautela Necessária",
+                protect: "Xangô & Oxum",
+                herb: "Banho de Guiné"
+            },
+            {
+                name: "Ofá (1 Búzio Aberto, 3 Fechados)",
+                title: "Superação Através da Fé",
+                text: "Existe um obstáculo momentâneo, mas com firmeza de propósito e oração você reverterá qualquer desfavor.",
+                verdict: "Persistência",
+                protect: "Oxóssi & Omulú",
+                herb: "Banho de Alecrim"
+            }
+        ];
+
+        function throwSacredBuzios() {
+            AudioFX.playShellRattle();
+            const tray = document.getElementById('buzios-tray');
+            tray.innerHTML = '';
+
+            const chosenFall = buziosFalls[Math.floor(Math.random() * buziosFalls.length)];
+
+            // Render 4 virtual cowrie shells with randomized coordinates inside opon
+            for (let i = 0; i < 4; i++) {
+                const shell = document.createElement('div');
+                const isOpen = i < (chosenFall.name.includes('4') ? 4 : chosenFall.name.includes('3') ? 3 : chosenFall.name.includes('2') ? 2 : 1);
+                
+                const tx = (Math.random() * 160 - 80);
+                const ty = (Math.random() * 160 - 80);
+                const fx = (Math.random() * 120 - 60);
+                const fy = (Math.random() * 120 - 60);
+                const rot = Math.floor(Math.random() * 360);
+
+                shell.className = `absolute w-12 h-16 rounded-full border border-gold/70 flex items-center justify-center shadow-lg shell-tossed ${isOpen ? 'bg-gradient-to-tr from-amber-100 to-yellow-200 text-mystic-950' : 'bg-gradient-to-tr from-mystic-900 to-mystic-800 text-gold'}`;
+                shell.style.left = `calc(50% - 24px + ${fx}px)`;
+                shell.style.top = `calc(50% - 32px + ${fy}px)`;
+                shell.style.setProperty('--tw-tx', `${tx}px`);
+                shell.style.setProperty('--tw-ty', `${ty}px`);
+                shell.style.setProperty('--tw-fx', `${fx}px`);
+                shell.style.setProperty('--tw-fy', `${fy}px`);
+                shell.style.setProperty('--tw-rot', `${rot}deg`);
+
+                shell.innerHTML = `<span class="text-[10px] font-bold font-cinzel">${isOpen ? '✦ ABERTO' : '●'}</span>`;
+                tray.appendChild(shell);
+            }
+
+            // Update result card
+            document.getElementById('buzios-caida-name').textContent = `Queda: ${chosenFall.name}`;
+            document.getElementById('buzios-odu-title').textContent = chosenFall.title;
+            document.getElementById('buzios-guidance-text').textContent = chosenFall.text;
+            document.getElementById('buzios-verdict-tag').textContent = `Veredito: ${chosenFall.verdict}`;
+            document.getElementById('buzios-protection-tag').textContent = `Regência: ${chosenFall.protect}`;
+            document.getElementById('buzios-herb-tag').textContent = `Conselho: ${chosenFall.herb}`;
+
+            showToast("Búzios Lançados", chosenFall.name);
+        }
+
+        /* -------------------------------------------------------------
+           5. TAB SWITCHING (TAROT / BÚZIOS)
+        ------------------------------------------------------------- */
+        function switchOracleTab(tab) {
+            const tabTarot = document.getElementById('tab-tarot');
+            const tabBuzios = document.getElementById('tab-buzios');
+            const contTarot = document.getElementById('container-tarot-oracle');
+            const contBuzios = document.getElementById('container-buzios-oracle');
+
+            if (tab === 'tarot') {
+                tabTarot.className = "px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider transition-all duration-300 bg-gold text-mystic-950 shadow-gold-glow";
+                tabBuzios.className = "px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider text-gray-400 hover:text-gold transition-all duration-300";
+                contTarot.classList.remove('hidden');
+                contBuzios.classList.add('hidden');
+            } else {
+                tabBuzios.className = "px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider transition-all duration-300 bg-gold text-mystic-950 shadow-gold-glow";
+                tabTarot.className = "px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider text-gray-400 hover:text-gold transition-all duration-300";
+                contBuzios.classList.remove('hidden');
+                contTarot.classList.add('hidden');
+            }
+        }
+
+        /* -------------------------------------------------------------
+           6. SMART BOOKING & WHATSAPP REDIRECTOR ((31) 98895-6933)
+        ------------------------------------------------------------- */
+        function preselectService(serviceName) {
+            const selectEl = document.getElementById('oracle-choice');
+            if (selectEl) {
+                for (let i = 0; i < selectEl.options.length; i++) {
+                    if (selectEl.options[i].value.includes(serviceName) || selectEl.options[i].text.includes(serviceName)) {
+                        selectEl.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+            const targetSection = document.getElementById('agendamento');
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            showToast("Serviço Selecionado", `Preencha seus dados para agendar: ${serviceName}`);
+        }
+
+        function handleBookingSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('client-name').value.trim();
+            const phone = document.getElementById('client-phone').value.trim();
+            const oracle = document.getElementById('oracle-choice').value;
+            const format = document.getElementById('session-format').value;
+            const date = document.getElementById('pref-date').value || 'A combinar';
+            const period = document.getElementById('pref-period').value;
+            const notes = document.getElementById('client-notes').value.trim() || 'Nenhuma observação adicional.';
+
+            const message = `✨ *AGENDAMENTO DE CONSULTA - CIGANA MARIANA* ✨\n\n` +
+                            `👤 *Nome:* ${name}\n` +
+                            `📞 *Telefone:* ${phone}\n` +
+                            `🔮 *Oráculo:* ${oracle}\n` +
+                            `📱 *Formato:* ${format}\n` +
+                            `📅 *Data de Preferência:* ${date}\n` +
+                            `⏰ *Período:* ${period}\n` +
+                            `💬 *Foco da Consulta:* ${notes}\n\n` +
+                            `Olá Cigana Mariana, gostaria de confirmar o meu horário!`;
+
+            const encodedMsg = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/5531988956933?text=${encodedMsg}`;
+
+            showToast("Redirecionando...", "Abrindo WhatsApp oficial (31) 98895-6933 com sua mensagem.");
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+            }, 800);
+        }
+
+        /* -------------------------------------------------------------
+           7. FAQ ACCORDION
+        ------------------------------------------------------------- */
+        function toggleFaq(btn) {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('fa-chevron-down') || btn.querySelector('i');
+
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                if (icon) icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                if (icon) icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        /* -------------------------------------------------------------
+           8. MOBILE MENU TOGGLE
+        ------------------------------------------------------------- */
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (mobileToggle && mobileNav) {
+            mobileToggle.addEventListener('click', () => {
+                mobileNav.classList.toggle('hidden');
+            });
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.add('hidden');
+                });
+            });
+        }
+
+        /* -------------------------------------------------------------
+           9. TOAST NOTIFICATION SYSTEM
+        ------------------------------------------------------------- */
+        function showToast(title, msg) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-title').textContent = title;
+            document.getElementById('toast-msg').textContent = msg;
+
+            toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
